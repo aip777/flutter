@@ -16,47 +16,55 @@ class HomePage extends StatelessWidget{
 
       return Scaffold(
         appBar: new AppBar(title: new Text('Home')),
-        body: Column(
+        body: ListView(
+          children: <Widget>[
+            Column(
               children: <Widget>[
-              Image.asset('assets/images/image1.png'),
+
+                Image.asset('assets/images/image1.png'),
+                Image.asset('assets/images/ima.jpg'),
                 Container(
                   child: Text(_helloWorld, textAlign: TextAlign.justify,),
                   padding: EdgeInsets.all(20),
                 ),
                 Row(
+
                   children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(left: 15,top: 10,),
-                    padding: EdgeInsets.all(15),
-                    height: 50,
-                    width: 100,
-                    decoration:BoxDecoration(color: Color(Helper.getHexToInt('#fbbc05')),
-                    borderRadius: BorderRadius.circular(8)) , //end decoration
-                    child:Icon(Icons.account_balance),
-                ),//end container
-
+                    Image.asset('assets/images/image.png'),
                     Container(
-                        margin: EdgeInsets.only(left: 15,top: 10,),
-                        padding: EdgeInsets.all(15),
-                        height: 50,
-                        width: 100,
-                        decoration:BoxDecoration(color: Color(Helper.getHexToInt('#fbbc05')),
-                        borderRadius: BorderRadius.circular(8)) , //end decoration
-                        child:Icon(Icons.account_balance),
-                      ),//end container
-
-                    Container(
-                        margin: EdgeInsets.only(left: 15,top: 10,),
-                        padding: EdgeInsets.all(15),
-                        height: 50,
-                        width: 100,
-                        decoration:BoxDecoration(color: Color(Helper.getHexToInt('#fbbc05')),
-
-                        borderRadius: BorderRadius.circular(8)) , //end decoration
-                        child:Icon(Icons.account_balance),
+                      margin: EdgeInsets.only(left: 15,top: 10,),
+                      padding: EdgeInsets.all(15),
+                      height: 50,
+                      width: 100,
+                      decoration:BoxDecoration(color: Color(Helper.getHexToInt('#fbbc05')),
+                          borderRadius: BorderRadius.circular(8)) , //end decoration
+                      child:Icon(Icons.account_balance),
                     ),//end container
-          ],)
-    ],)); // end Scaffold
+
+                    Container(
+                      margin: EdgeInsets.only(left: 15,top: 10,),
+                      padding: EdgeInsets.all(15),
+                      height: 50,
+                      width: 100,
+                      decoration:BoxDecoration(color: Color(Helper.getHexToInt('#fbbc05')),
+                          borderRadius: BorderRadius.circular(8)) , //end decoration
+                      child:Icon(Icons.account_balance),
+                    ),//end container
+
+                    Container(
+                      margin: EdgeInsets.only(left: 15,top: 10,),
+                      padding: EdgeInsets.all(15),
+                      height: 50,
+                      width: 100,
+                      decoration:BoxDecoration(color: Color(Helper.getHexToInt('#fbbc05')),
+
+                          borderRadius: BorderRadius.circular(8)) , //end decoration
+                      child:Icon(Icons.account_balance),
+                    ),//end container
+                  ],)
+              ],)
+          ],
+        )); // end Scaffold
   }
 
 }
