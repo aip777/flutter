@@ -16,55 +16,37 @@ class HomePage extends StatelessWidget{
 
       return Scaffold(
         appBar: new AppBar(title: new Text('Home')),
-        body: ListView(
+        body: Column(
           children: <Widget>[
-            Column(
+            Stack(
               children: <Widget>[
-
                 Image.asset('assets/images/image1.png'),
-                Image.asset('assets/images/ima.jpg'),
-                Container(
-                  child: Text(_helloWorld, textAlign: TextAlign.justify,),
-                  padding: EdgeInsets.all(20),
-                ),
-                Row(
-
-                  children: <Widget>[
-                    Image.asset('assets/images/image.png'),
-                    Container(
-                      margin: EdgeInsets.only(left: 15,top: 10,),
-                      padding: EdgeInsets.all(15),
-                      height: 50,
-                      width: 100,
-                      decoration:BoxDecoration(color: Color(Helper.getHexToInt('#fbbc05')),
-                          borderRadius: BorderRadius.circular(8)) , //end decoration
-                      child:Icon(Icons.account_balance),
-                    ),//end container
-
-                    Container(
-                      margin: EdgeInsets.only(left: 15,top: 10,),
-                      padding: EdgeInsets.all(15),
-                      height: 50,
-                      width: 100,
-                      decoration:BoxDecoration(color: Color(Helper.getHexToInt('#fbbc05')),
-                          borderRadius: BorderRadius.circular(8)) , //end decoration
-                      child:Icon(Icons.account_balance),
-                    ),//end container
-
-                    Container(
-                      margin: EdgeInsets.only(left: 15,top: 10,),
-                      padding: EdgeInsets.all(15),
-                      height: 50,
-                      width: 100,
-                      decoration:BoxDecoration(color: Color(Helper.getHexToInt('#fbbc05')),
-
-                          borderRadius: BorderRadius.circular(8)) , //end decoration
-                      child:Icon(Icons.account_balance),
-                    ),//end container
-                  ],)
-              ],)
+                Positioned(
+                  bottom: 20,
+                  left: 30,
+                  child: Text("Hello Flutter", style: TextStyle(color: Colors.black, fontSize: 20),),
+                )
+              ],
+            ) ,// end stack
+            Text("Features", style: TextStyle(color: Colors.green, fontSize: 20),),
+            SizedBox(height: 20,),
+            Row(
+              children: <Widget>[
+                _rowCell('#6c5ce7'),
+                _rowCell('#fd79a8'),
+                _rowCell("#d63031"),
+            ],)
           ],
-        )); // end Scaffold
+        )
+      ); // end Scaffold
   }
+      Widget _rowCell(String clr){
+    return Expanded(
+      child: Container(
+        height: 50, width: 50, decoration: BoxDecoration(color: Color(Helper.getHexToInt(clr))),
+      child: Icon(Icons.all_inclusive, color: Colors.red,),
+      ),
 
+    );
+      }
 }
