@@ -18,24 +18,15 @@ class HomePage extends StatelessWidget{
         appBar: new AppBar(title: new Text('Home')),
         body: Column(
           children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Image.asset('assets/images/image1.png'),
-                Positioned(
-                  bottom: 20,
-                  left: 30,
-                  child: Text("Hello Flutter", style: TextStyle(color: Colors.black, fontSize: 20),),
-                )
-              ],
-            ) ,// end stack
-            Text("Features", style: TextStyle(color: Colors.green, fontSize: 20),),
-            SizedBox(height: 20,),
-            Row(
-              children: <Widget>[
-                _rowCell('#6c5ce7'),
-                _rowCell('#fd79a8'),
-                _rowCell("#d63031"),
-            ],)
+            Container(
+              height: 100,
+              padding: EdgeInsets.all(20),
+              child: ListView(
+                children: <Widget>[
+                  Text(_helloWorld+_helloWorld),
+                ],
+              ),
+            )
           ],
         )
       ); // end Scaffold
