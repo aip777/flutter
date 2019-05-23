@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
+import 'package:flutter/widgets.dart';
 import 'helper.dart';
 void main(){
 
@@ -10,7 +11,14 @@ void main(){
   ));
 }
 
-class HomePage extends StatelessWidget{
+class HomePage extends StatefulWidget{
+  _HomePageState createState()=> _HomePageState();
+}
+
+
+
+class _HomePageState extends State <HomePage>{
+  String txt ="Stateless Widget";
   final _helloWorld = "Hello World Hello World Hello WorldHello World Hello World Hello WorldHello World Hello World Hello WorldHello World Hello World Hello World";
 
   List people = [
@@ -43,6 +51,7 @@ class HomePage extends StatelessWidget{
             children: <Widget>[
               Stack(
                 children: <Widget>[
+
                   Image.asset("assets/images/image3.png"),
                   Positioned(
                     left: 30,
@@ -87,10 +96,16 @@ class HomePage extends StatelessWidget{
         ),
         body: ListView(
           children: <Widget>[
-            _foodCard(),
-            _foodCard(),
-            _foodCard(),
-            _foodCard(),
+            Text(txt),
+            RaisedButton(
+              child: Text('Tap Hare'),
+              onPressed: (){
+                print("Button Prese");
+                setState(() {
+                  txt = "StateFull Widget";
+                });
+              }
+            )
           ],
         ),
 
@@ -101,6 +116,7 @@ class HomePage extends StatelessWidget{
 
   Widget _foodCard(){
     return Material(
+      elevation: 20,
       child:Column (
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
