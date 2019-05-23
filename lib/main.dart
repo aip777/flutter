@@ -10,7 +10,7 @@ void main(){
 }
 
 class HomePage extends StatelessWidget{
-  final _helloWorld = "Hello World Hello World Hello World";
+  final _helloWorld = "Hello World Hello World Hello WorldHello World Hello World Hello WorldHello World Hello World Hello WorldHello World Hello World Hello World";
   @override
   Widget build(BuildContext contex){
 
@@ -19,11 +19,22 @@ class HomePage extends StatelessWidget{
         body: Column(
           children: <Widget>[
             Container(
-              height: 100,
+              height: 500,
               padding: EdgeInsets.all(20),
               child: ListView(
                 children: <Widget>[
-                  Text(_helloWorld+_helloWorld),
+                    _cell(),
+                    Divider(),
+                    _cell(),
+                  Divider(),
+                    _cell(),
+                  Divider(),
+                    _cell(),
+                  Divider(),
+                    _cell(),
+                  Divider(),
+                    _cell(),
+
                 ],
               ),
             )
@@ -40,4 +51,19 @@ class HomePage extends StatelessWidget{
 
     );
       }
+
+
+    Widget _cell() {
+      return Row(children: <Widget>[
+      Container(
+      width: 100,
+      height: 100,
+
+      decoration: BoxDecoration(color: Colors.teal),
+      child: Icon(Icons.lightbulb_outline, color: Colors.white),
+
+    ),
+      ],
+      );
+  }
 }
