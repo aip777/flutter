@@ -11,31 +11,52 @@ void main(){
 
 class HomePage extends StatelessWidget{
   final _helloWorld = "Hello World Hello World Hello WorldHello World Hello World Hello WorldHello World Hello World Hello WorldHello World Hello World Hello World";
+
+  List people = [
+    {"name": "Maryam", "email": "eleifend.vitae@Vivamusmolestiedapibus.edu"},
+    {"name": "Carlos", "email": "purus.accumsan@Donecfringilla.edu"},
+    {"name": "Ali", "email": "eu.nibh.vulputate@non.ca"},
+    {"name": "Alexandra", "email": "placerat@Aenean.com"},
+    {"name": "Illana", "email": "egestas@montesnasceturridiculus.co.uk"},
+    {"name": "Cora", "email": "auctor.Mauris.vel@erat.com"},
+    {"name": "Astra", "email": "gravida@Morbivehicula.org"},
+    {"name": "Oliver", "email": "Cras.vehicula@iaculisquis.edu"},
+    {"name": "Howard", "email": "faucibus@nuncid.ca"},
+    {"name": "Carlos", "email": "nibh.Quisque.nonummy@tristiquepharetra.co.uk"},
+    {"name": "Wendy", "email": "Etiam@leoelementum.co.uk"},
+    {"name": "Desirae", "email": "posuere.enim.nisl@infaucibusorci.com"},
+    {"name": "Cora", "email": "auctor.Mauris.vel@erat.com"},
+    {"name": "Astra", "email": "gravida@Morbivehicula.org"},
+    {"name": "Oliver", "email": "Cras.vehicula@iaculisquis.edu"},
+    {"name": "Howard", "email": "faucibus@nuncid.ca"},
+    {"name": "Carlos", "email": "nibh.Quisque.nonummy@tristiquepharetra.co.uk"},
+    {"name": "Wendy", "email": "Etiam@leoelementum.co.uk"},
+  ];
   @override
   Widget build(BuildContext contex){
 
       return Scaffold(
         appBar: new AppBar(title: new Text('Home')),
-        body: Column(
-          children: <Widget>[
-            Container(
-              height: 500,
-              padding: EdgeInsets.all(20),
-              child: ListView(
-                children: <Widget>[
-                    ListTile(
-                      leading: CircleAvatar(
-                        child: Text("I"),
-                      ),
-                      title: Text("ISLAM"),
-                      subtitle: Text("Junior Software Engineer"),
-                    ),
+        body: ListView.builder(
+                itemCount:people.length,
+                itemBuilder: (BuildContext context, int index){
+                  return Column(
+                    children: <Widget>[
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Text("P"),
+                        ),
+                        title: Text(people[index] ['name']),
+                        subtitle: Text(people[index]["email"]),
+                      )
+                    ],
+                  );
+                }
 
-                ],
               ),
-            )
-          ],
-        )
+
+
+
       ); // end Scaffold
   }
       Widget _rowCell(String clr){
