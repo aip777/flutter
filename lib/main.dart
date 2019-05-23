@@ -23,17 +23,13 @@ class HomePage extends StatelessWidget{
               padding: EdgeInsets.all(20),
               child: ListView(
                 children: <Widget>[
-                    _cell(),
-                    Divider(),
-                    _cell(),
-                  Divider(),
-                    _cell(),
-                  Divider(),
-                    _cell(),
-                  Divider(),
-                    _cell(),
-                  Divider(),
-                    _cell(),
+                    ListTile(
+                      leading: CircleAvatar(
+                        child: Text("I"),
+                      ),
+                      title: Text("ISLAM"),
+                      subtitle: Text("Junior Software Engineer"),
+                    ),
 
                 ],
               ),
@@ -55,12 +51,12 @@ class HomePage extends StatelessWidget{
 
     Widget _cell() {
       return Row(children: <Widget>[
-      Container(
-      width: 100,
-      height: 100,
+        Container(
+          width: 100,
+         height: 100,
 
-      decoration: BoxDecoration(color: Colors.teal),
-      child: Icon(Icons.lightbulb_outline, color: Colors.white),
+          decoration: BoxDecoration(color: Colors.teal),
+          child: Icon(Icons.lightbulb_outline, color: Colors.white),
 
     ),
       ],
