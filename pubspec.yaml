@@ -46,6 +46,10 @@ flutter:
     - assets/images/image1.png
     - assets/images/images.jpg
     - assets/images/images.png
+    - assets/images/blank.jpg
+    - assets/images/profile.jpg
+    - assets/images/image3.png
+    - assets/images/avatar.png
 #    - assets/images/ima.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

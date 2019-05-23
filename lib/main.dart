@@ -37,6 +37,46 @@ class HomePage extends StatelessWidget{
 
       return Scaffold(
         appBar: new AppBar(title: new Text('Home')),
+        drawer: Drawer(
+          child: ListView(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  Image.asset("assets/images/image3.png"),
+                  Positioned(
+                    left: 30,
+                    bottom: 50,
+                    child: Container(height: 50, width: 50, child: Image.asset("assets/images/avatar.png"),),
+                  ),
+                  Positioned(
+                    left: 30,
+                    bottom: 20,
+                    child: Text("Palash Khan", style: TextStyle(color: Colors.red),),
+                  ),
+                ],
+              ),
+              SizedBox(height: 30,),
+              ListTile(
+                leading: Icon(Icons.mail),
+                title: Text("Mailbox"),
+              ),
+              Divider(),
+
+              SizedBox(height: 30,),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text("Settings"),
+              ),
+              Divider(),
+              SizedBox(height: 30,),
+              ListTile(
+                leading: Icon(Icons.gif),
+                title: Text("Gif"),
+              ),
+              Divider(),
+            ],
+          ),
+        ),
         body: ListView.builder(
                 itemCount:people.length,
                 itemBuilder: (BuildContext context, int index){
@@ -44,7 +84,7 @@ class HomePage extends StatelessWidget{
                     children: <Widget>[
                       ListTile(
                         leading: CircleAvatar(
-                          child: Text("P"),
+                          child: Text(people[index]['name'][0]),
                         ),
                         title: Text(people[index] ['name']),
                         subtitle: Text(people[index]["email"]),
