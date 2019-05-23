@@ -74,6 +74,13 @@ class HomePage extends StatelessWidget{
                 title: Text("Gif"),
               ),
               Divider(),
+
+              SizedBox(height: 30,),
+              ListTile(
+                leading: Icon(Icons.record_voice_over),
+                title: Text("Record"),
+              ),
+              Divider(),
             ],
           ),
         ),
