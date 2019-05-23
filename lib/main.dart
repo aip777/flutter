@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as prefix0;
 import 'helper.dart';
 void main(){
 
@@ -36,7 +37,7 @@ class HomePage extends StatelessWidget{
   Widget build(BuildContext contex){
 
       return Scaffold(
-        appBar: new AppBar(title: new Text('Home')),
+        appBar: new AppBar(title: new Text('Home'),),
         drawer: Drawer(
           child: ListView(
             children: <Widget>[
@@ -84,33 +85,51 @@ class HomePage extends StatelessWidget{
             ],
           ),
         ),
-        body: ListView.builder(
-                itemCount:people.length,
-                itemBuilder: (BuildContext context, int index){
-                  return Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: CircleAvatar(
-                          child: Text(people[index]['name'][0]),
-                        ),
-                        title: Text(people[index] ['name']),
-                        subtitle: Text(people[index]["email"]),
-                      )
-                    ],
-                  );
-                }
-
-              ),
+        body: ListView(
+          children: <Widget>[
+            _foodCard(),
+            _foodCard(),
+            _foodCard(),
+            _foodCard(),
+          ],
+        ),
 
 
 
       ); // end Scaffold
   }
-      Widget _rowCell(String clr){
+
+  Widget _foodCard(){
+    return Material(
+      child:Column (
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Image.asset("assets/images/image2.png"),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child:Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text("Hot Dog", style: TextStyle(color: Colors.green, fontSize: 20),),
+                SizedBox(height: 5,),
+                Text("Price \$55", style: TextStyle(fontSize: 12),),
+                SizedBox(height: 5,),
+                Text("Sales 222 Times", style: TextStyle( fontSize: 12),),
+              ],
+            ) ,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _rowCell(String clr){
     return Expanded(
       child: Container(
         height: 50, width: 50, decoration: BoxDecoration(color: Color(Helper.getHexToInt(clr))),
-      child: Icon(Icons.all_inclusive, color: Colors.red,),
+        child: Icon(Icons.all_inclusive, color: Colors.red,),
       ),
 
     );
