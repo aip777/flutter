@@ -2,7 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/widgets.dart';
+import 'package:my_app/toast.dart' as prefix1;
 import 'helper.dart';
+import 'toast.dart';
+
+
 void main(){
 
   runApp(new MaterialApp(
@@ -20,6 +24,18 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State <HomePage>{
   String txt ="Stateless Widget";
   final _helloWorld = "Hello World Hello World Hello WorldHello World Hello World Hello WorldHello World Hello World Hello WorldHello World Hello World Hello World";
+
+  int Count = 0;
+  final msg = "Hello this is Show Toast Message";
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  _showSnackBar (){
+    var _mySnackBar = SnackBar(content: Text("This is my Snack Bar"),);
+    _scaffoldKey.currentState.showSnackBar(_mySnackBar);
+  }
+
+  _showToast(){
+    Toast.show(msg, context, backgroundColor:Colors.red, textColor: Colors.white);
+  }
 
   List people = [
     {"name": "Maryam", "email": "eleifend.vitae@Vivamusmolestiedapibus.edu"},
@@ -44,74 +60,99 @@ class _HomePageState extends State <HomePage>{
   @override
   Widget build(BuildContext contex){
 
-      return Scaffold(
-        appBar: new AppBar(title: new Text('Home'),),
-        drawer: Drawer(
-          child: ListView(
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-
-                  Image.asset("assets/images/image3.png"),
-                  Positioned(
-                    left: 30,
-                    bottom: 50,
-                    child: Container(height: 50, width: 50, child: Image.asset("assets/images/avatar.png"),),
-                  ),
-                  Positioned(
-                    left: 30,
-                    bottom: 20,
-                    child: Text("Palash Khan", style: TextStyle(color: Colors.red),),
-                  ),
-                ],
-              ),
-              SizedBox(height: 30,),
-              ListTile(
-                leading: Icon(Icons.mail),
-                title: Text("Mailbox"),
-              ),
-              Divider(),
-
-              SizedBox(height: 30,),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text("Settings"),
-              ),
-              Divider(),
-              SizedBox(height: 30,),
-              ListTile(
-                leading: Icon(Icons.gif),
-                title: Text("Gif"),
-              ),
-              Divider(),
-
-              SizedBox(height: 30,),
-              ListTile(
-                leading: Icon(Icons.record_voice_over),
-                title: Text("Record"),
-              ),
-              Divider(),
-            ],
-          ),
-        ),
-        body: ListView(
+    return Scaffold(
+      appBar: new AppBar(title: new Text('Home'),),
+      key: _scaffoldKey,
+      drawer: Drawer(
+        child: ListView(
           children: <Widget>[
-            Text(txt),
-            RaisedButton(
-              child: Text('Tap Hare'),
-              onPressed: (){
-                print("Button Prese");
-                setState(() {
-                  txt = "StateFull Widget";
-                });
-              }
-            )
+            Stack(
+              children: <Widget>[
+
+                Image.asset("assets/images/image3.png"),
+                Positioned(
+                  left: 30,
+                  bottom: 50,
+                  child: Container(height: 50, width: 50, child: Image.asset("assets/images/avatar.png"),),
+                ),
+                Positioned(
+                  left: 30,
+                  bottom: 20,
+                  child: Text("Palash Khan", style: TextStyle(color: Colors.red),),
+                ),
+              ],
+            ),
+            SizedBox(height: 30,),
+            ListTile(
+              leading: Icon(Icons.mail),
+              title: Text("Mailbox"),
+            ),
+            Divider(),
+
+            SizedBox(height: 30,),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("Settings"),
+            ),
+            Divider(),
+            SizedBox(height: 30,),
+            ListTile(
+              leading: Icon(Icons.gif),
+              title: Text("Gif"),
+            ),
+            Divider(),
+
+            SizedBox(height: 30,),
+            ListTile(
+              leading: Icon(Icons.record_voice_over),
+              title: Text("Record"),
+            ),
+            Divider(),
           ],
         ),
+      ),
+
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.plus_one),
+          onPressed: (){
+            setState(() {
+
+            });
+          }
+      ),
+      body: ListView(
+        children: <Widget>[
+
+          Text("Count: ${Count}", textAlign: TextAlign.center, style: TextStyle(color: Colors.amber),),
+          RaisedButton(
+              child: Text('Raise Button', style: TextStyle(color: Colors.green),),
+              onPressed: (){
+                setState(() {
+                  _showSnackBar();
+                });
+              }
+          ), //end rise Button
+
+          IconButton(
+              icon: Icon(Icons.dashboard),
+              onPressed: (){
+                setState(() {
+                  _showToast();
+                });
+              }
+          ),
 
 
 
-      ); // end Scaffold
+          _foodCard(),
+          _foodCard(),
+          _foodCard(),
+        ],
+      ),
+
+
+
+    ); // end Scaffold
   }
 
   Widget _foodCard(){
@@ -149,20 +190,20 @@ class _HomePageState extends State <HomePage>{
       ),
 
     );
-      }
+  }
 
 
-    Widget _cell() {
-      return Row(children: <Widget>[
-        Container(
-          width: 100,
-         height: 100,
+  Widget _cell() {
+    return Row(children: <Widget>[
+      Container(
+        width: 100,
+        height: 100,
 
-          decoration: BoxDecoration(color: Colors.teal),
-          child: Icon(Icons.lightbulb_outline, color: Colors.white),
+        decoration: BoxDecoration(color: Colors.teal),
+        child: Icon(Icons.lightbulb_outline, color: Colors.white),
 
-    ),
-      ],
-      );
+      ),
+    ],
+    );
   }
 }
