@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multipage/pages/page_one.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+
 
 void main(){
   runApp(MaterialApp(home: Dashboard()));
@@ -12,26 +16,24 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  List people = [
-    {"name": "Maryam", "email": "eleifend.vitae@Vivamusmolestiedapibus.edu"},
-    {"name": "Carlos", "email": "purus.accumsan@Donecfringilla.edu"},
-    {"name": "Ali", "email": "eu.nibh.vulputate@non.ca"},
-    {"name": "Alexandra", "email": "placerat@Aenean.com"},
-    {"name": "Illana", "email": "egestas@montesnasceturridiculus.co.uk"},
-    {"name": "Cora", "email": "auctor.Mauris.vel@erat.com"},
-    {"name": "Astra", "email": "gravida@Morbivehicula.org"},
-    {"name": "Oliver", "email": "Cras.vehicula@iaculisquis.edu"},
-    {"name": "Howard", "email": "faucibus@nuncid.ca"},
-    {"name": "Carlos", "email": "nibh.Quisque.nonummy@tristiquepharetra.co.uk"},
-    {"name": "Wendy", "email": "Etiam@leoelementum.co.uk"},
-    {"name": "Desirae", "email": "posuere.enim.nisl@infaucibusorci.com"},
-    {"name": "Cora", "email": "auctor.Mauris.vel@erat.com"},
-    {"name": "Astra", "email": "gravida@Morbivehicula.org"},
-    {"name": "Oliver", "email": "Cras.vehicula@iaculisquis.edu"},
-    {"name": "Howard", "email": "faucibus@nuncid.ca"},
-    {"name": "Carlos", "email": "nibh.Quisque.nonummy@tristiquepharetra.co.uk"},
-    {"name": "Wendy", "email": "Etiam@leoelementum.co.uk"},
-  ];
+
+  List posts;
+
+  Future<bool> _getPosts() async{
+    String serivceUrl = 'https://jsonplaceholder.typicode.com/posts';
+    var response = await http.get(serivceUrl);
+    setState(() {
+     posts =json.decode(response.body.toString());
+     print(posts); 
+    });
+    return true;
+  } 
+
+  @override
+  void initState(){
+    super.initState();
+    this._getPosts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +41,13 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(title: Text("Page One"),),
       body: new ListView.builder(
           padding: new EdgeInsets.all(18.0),
+          itemCount: posts.length==null?0:posts.length,
 
           itemBuilder: (BuildContext context, int index){
             return ListTile(
-              title: Text(people[index]['name']),
-              subtitle: Text(people[index]['email']),
+              title: Text(posts[index]['title']),
               onTap: (){
-                print(people[index]);
-                Route route = MaterialPageRoute(builder: (context)=>PageOne(people[index]));
+                Route route = MaterialPageRoute(builder: (context)=>PageOne(posts[index]));
                 Navigator.push(context, route);
               },
             );
