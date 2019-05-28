@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class PageOne extends StatefulWidget {
-  var msg;
-  PageOne(this.msg);
+  var data;
+  PageOne(this.data);
 
   @override
-  _PageOneState createState() => _PageOneState(this.msg);
+  _PageOneState createState() => _PageOneState(this.data);
 }
 
 class _PageOneState extends State<PageOne> {
-  var msg;
-  _PageOneState(this.msg);
+  var data;
+  _PageOneState(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +19,17 @@ class _PageOneState extends State<PageOne> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Page One ${this.msg}"),
-          RaisedButton(
-            child: Text("GoTO DashBoard"),
-            onPressed: (){
-              Navigator.pop(context);
-            },
-          )
-        ],
-      ),
+          children: <Widget>[
+            Text("Page One ${data['name']}"),
+            Text("Page One ${data['email']}"),
+            RaisedButton(
+              child: Text("GoTO DashBoard"),
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
       ),
     );
   }
