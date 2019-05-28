@@ -15,17 +15,21 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Dashboard"),),
-      body: Column(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text("Dashboard"),
           RaisedButton(
             child: Text("Page One"),
             onPressed: (){
-              Route route = MaterialPageRoute(builder: (context)=>PageOne());
+              var message = "Bala Asot Ni";
+              Route route = MaterialPageRoute(builder: (context)=>PageOne(message));
               Navigator.push(context, route);
             },
           )
         ],
+      ),
       ),
     );
   }
