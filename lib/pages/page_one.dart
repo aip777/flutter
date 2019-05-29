@@ -20,7 +20,9 @@ class _PageOneState extends State<PageOne> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("Page One ${data['title']}"),
+            Text("Title ${data['title']}"),
+            Text("Body ${data['body']}"),
+            Text("ID ${data['id']}"),
             RaisedButton(
               child: Text("GoTO DashBoard"),
               onPressed: (){

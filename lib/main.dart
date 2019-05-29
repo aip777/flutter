@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multipage/pages/page_one.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart' show rootBundle;
 import 'dart:async';
 import 'dart:convert';
+
 
 
 void main(){
@@ -17,43 +19,50 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
 
-  List posts;
+ List data;
 
-  Future<bool> _getPosts() async{
-    String serivceUrl = 'https://jsonplaceholder.typicode.com/posts';
-    var response = await http.get(serivceUrl);
-    setState(() {
-     posts =json.decode(response.body.toString());
-     print(posts); 
-    });
+  Future<bool> loadJsonData() async{
+    var jsonText = await rootBundle.loadString("assets/data.json");
+    setState(() =>data = json.decode(jsonText));
+    print(jsonText);
     return true;
   } 
 
   @override
   void initState(){
     super.initState();
-    this._getPosts();
+    this.loadJsonData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Page One"),),
-      body: new ListView.builder(
-          padding: new EdgeInsets.all(18.0),
-          itemCount: posts.length==null?0:posts.length,
+      appBar: AppBar(title: Text("List View Search"),),
+      body: 
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              // itemCount: this.data.length,
+              itemCount: data.length==null?0:data.length,
+              itemBuilder:(BuildContext context, int i){
+                var name = data[i] ['name'];
+                var email = data[i] ['email'];
 
-          itemBuilder: (BuildContext context, int index){
-            return ListTile(
-              title: Text(posts[index]['title']),
-              onTap: (){
-                Route route = MaterialPageRoute(builder: (context)=>PageOne(posts[index]));
-                Navigator.push(context, route);
-              },
-            );
-          }
+                return ListTile(
+                    leading: CircleAvatar(
+                      child: Text(name[0]),
+                      ),
+                      title: Text(name),
+                      subtitle: Text(email),
+                );
+              }
 
-      ),
+            ),
+            )
+      ],)
     );
   }
 }
