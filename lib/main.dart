@@ -20,11 +20,13 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
 
  List data;
+ List unfilterData;
 
-  Future<bool> loadJsonData() async{
+  Future<bool> loadJsonData() async {
     var jsonText = await rootBundle.loadString("assets/data.json");
-    setState(() =>data = json.decode(jsonText));
-    print(jsonText);
+    setState(() => data = json.decode(jsonText));
+    this.unfilterData = data;
+    print(data [1]);
     return true;
   } 
 
@@ -34,15 +36,45 @@ class _DashboardState extends State<Dashboard> {
     this.loadJsonData();
   }
 
+  searchData(str){
+    var strExist = str.length>0? true:false;
+    if (strExist){
+        var filterData = [];
+        for(var i = 0; i<unfilterData.length; i++){
+          String name =unfilterData[i]['name'].toUpperCase();
+            if(name.contains(str.toUpperCase())){
+              filterData.add(unfilterData[i]);
+            }
+        }
+        setState(() {
+         this.data = filterData; 
+        });
+    }else{
+      setState(() {
+       this.data = this.unfilterData;
+      });
+      
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("List View Search"),),
-      body: 
-      Column(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          TextField(
+            decoration:InputDecoration(
+            hintText: 'Search a name'
+            ),
+            onChanged:(String str){
+              print(str);
+              this.searchData(str);
+            },
+            ),
+            
           Expanded(
             child: ListView.builder(
               // itemCount: this.data.length,
